@@ -1,0 +1,14 @@
+<h3>Code Blocks</h3>
+
+<ul
+  cdkDropList
+  cdkDropListSortingDisabled
+  class="initial-code-blocks-list"
+  [cdkDropListData]="codeBlocks"
+  [cdkDropListEnterPredicate]="noReturnPredicate">
+  @for (block of codeBlocks; track block) {
+  <li class="list-item" tndm-code-block [cdkDragData]="block" [executionOrder]="block.executionOrder">
+    <pre>{{ block.code }}</pre>
+  </li>
+  }
+</ul>

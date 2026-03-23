@@ -1,0 +1,13 @@
+@use '../../shared/drag-drop' as dragDrop;
+
+.bucket-heading {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.bucket-content {
+  @include dragDrop.drag-drop-container;
+}
+
+@include dragDrop.drag-drop-animations;

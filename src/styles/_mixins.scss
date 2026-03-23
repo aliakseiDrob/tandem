@@ -1,0 +1,25 @@
+@mixin corner-borders($size: 8px, $thickness: 2px, $color: currentColor, $position: 0) {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-top: $thickness solid $color;
+    border-left: $thickness solid $color;
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    top: $position;
+    left: $position;
+  }
+
+  &::after {
+    right: $position;
+    bottom: $position;
+    transform: rotate(180deg);
+  }
+}

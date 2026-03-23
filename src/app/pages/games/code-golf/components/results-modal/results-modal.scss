@@ -1,0 +1,82 @@
+@use 'sass:color';
+@use '/styles/variables' as v;
+@use './styles/typography' as mx;
+
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(v.$color-black, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: v.$bg-surface;
+  padding: v.$space-lg;
+  border-radius: v.$radius-lg;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 20px 50px rgba(v.$color-black, 0.2);
+  border: 1px solid v.$border-second-color;
+
+  h3 {
+    margin-top: 0;
+    text-align: center;
+    @include mx.text-title(v.$text-primary-color);
+  }
+
+  ul {
+    padding: 0;
+    margin: v.$space-md 0;
+    border: 1px solid v.$border-second-color;
+    border-radius: v.$radius-md;
+    overflow: hidden;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 80px 2fr 1fr 1fr 60px;
+    gap: v.$space-md;
+    padding: v.$space-sm v.$space-md;
+    align-items: center;
+    border-bottom: 1px solid v.$border-second-color;
+    @include mx.text-body(v.$text-primary-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.table-header {
+      background: v.$bg-main;
+      color: v.$color-grey-accent;
+      @include mx.text-ui(v.$color-grey-accent, v.$font-size-sm, v.$font-weight-bold);
+      text-transform: uppercase;
+    }
+
+    &.passed {
+      background-color: color.adjust(v.$color-success, $alpha: -0.9);
+      color: color.scale(v.$color-success, $lightness: -20%);
+    }
+
+    &.failed {
+      background-color: color.adjust(v.$color-error, $alpha: -0.9);
+      color: color.scale(v.$color-error, $lightness: -20%);
+    }
+  }
+}
+
+.error-text {
+  margin: v.$space-md 0;
+  padding: v.$space-md;
+  background: color.adjust(v.$color-error, $alpha: -0.9);
+  border-radius: v.$radius-md;
+  text-align: center;
+  border: 1px solid color.adjust(v.$color-error, $alpha: -0.8);
+
+  @include mx.text-body(v.$color-error);
+  font-weight: v.$font-weight-bold;
+}

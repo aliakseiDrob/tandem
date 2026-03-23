@@ -1,0 +1,141 @@
+@use '/styles/variables' as v;
+@use '/styles/typography' as t;
+@use '/styles/mixins' as m;
+
+:host {
+  background-color: inherit;
+}
+
+.tndm-input-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 8px;
+  background-color: inherit;
+  @include t.text-body();
+
+  &:has(.input__field:disabled) {
+    .label {
+      color: v.$color-dark-grey;
+    }
+  }
+
+  &:has(.input-invalid) {
+    .label {
+      color: v.$color-error;
+    }
+  }
+}
+
+.label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  z-index: 2;
+  padding: 0 10px;
+  text-transform: lowercase;
+  background-color: inherit;
+  @include t.text-ui($size: v.$font-size-sm);
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid v.$border-main-color;
+  padding-right: v.$space-md;
+  transition: v.$transition-base;
+
+  &:has(.input__field:hover, .input__field:focus-visible) {
+    border-color: v.$color-accent;
+    color: v.$color-accent;
+  }
+
+  &:has(.input-invalid) {
+    border-color: v.$color-error;
+    color: v.$color-error;
+
+    &:has(.input__field:focus, .input__field:hover) {
+      border-color: v.$color-error;
+      color: v.$color-error;
+    }
+  }
+
+  &:has(.input__field:disabled) {
+    border-color: v.$color-disabled;
+    color: v.$color-dark-grey;
+    cursor: not-allowed;
+
+    &:has(.input__field:hover) {
+      border-color: v.$color-dark-grey;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 18px;
+    height: auto;
+
+    path {
+      fill: currentColor;
+    }
+  }
+}
+
+.input__field {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: v.$space-sm 0 v.$space-sm v.$space-md;
+  background-color: inherit;
+  caret-color: v.$color-accent;
+  @include t.text-body();
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    color: v.$color-dark-grey;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    @include t.text-ui($color: v.$color-dark-grey, $weight: v.$font-weight-normal);
+  }
+}
+
+.error-container {
+  display: block;
+  min-height: 12px;
+  max-height: 12px;
+  padding-top: 2px;
+  opacity: 0;
+
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
+
+  &.show {
+    max-height: 50px;
+    opacity: 1;
+  }
+}
+
+.error-msg {
+  display: block;
+  padding-left: 5px;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+
+  transform: translateY(-4px);
+  @include t.text-ui($size: 12px, $weight: v.$font-weight-normal, $color: v.$color-error);
+
+  .show & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

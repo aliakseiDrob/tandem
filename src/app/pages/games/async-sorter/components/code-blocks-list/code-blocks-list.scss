@@ -1,0 +1,8 @@
+@use '../../shared/drag-drop' as dragDrop;
+
+.initial-code-blocks-list {
+  min-width: 321px;
+  @include dragDrop.drag-drop-container;
+}
+
+@include dragDrop.drag-drop-animations;

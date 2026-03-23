@@ -1,0 +1,12 @@
+<button
+  class="button"
+  [class]="buttonClass()"
+  [disabled]="isDisabled()"
+  [type]="config().type"
+  (click)="onClick($event)">
+  @if (config().icon) {
+  <svg-icon class="button__icon" [applyClass]="true" [src]="ICONS[config().icon!]" />
+  } @if (formattedLabel()) {
+  <span>{{ formattedLabel() }}</span>
+  }
+</button>

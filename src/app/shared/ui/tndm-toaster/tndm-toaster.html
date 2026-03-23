@@ -1,0 +1,32 @@
+@if (toast.shows()) {
+<aside class="toaster-container">
+  <ul #scrollContainer class="toaster">
+    @for (item of toast.toasts(); track item.id) {
+
+    <li
+      tabindex="0"
+      [class]="`toast toast_type_${item.state}`"
+      (click)="toggleToast($event, item.id)"
+      (keydown.enter)="toggleToast($event, item.id)">
+      @if(item.options.icon) {
+      <div class="icon-wrapper">
+        <svg-icon class="toast__icon" [applyClass]="true" [src]="ICONS[item.state]" />
+      </div>
+      }
+
+      <div class="toast__text">
+        <h3 class="toast__title">{{item.title}}</h3>
+
+        @if(item.message !== '') {
+        <p class="toast__message" [class.open]="openedToastId() === item.id">{{ item.message }}</p>
+        }
+      </div>
+      <!-- TODO: Add variant button without background -->
+      <tndm-button class="close-button" [btnConfig]="closeBtnConfig" (clicked)="onRemove(item.id)" />
+    </li>
+    }
+  </ul>
+  <tndm-button class="close-all-toasts-button" [btnConfig]="closeAllBtnConfig" (clicked)="onRemoveAll()" />
+</aside>
+
+}

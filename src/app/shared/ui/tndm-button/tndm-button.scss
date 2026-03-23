@@ -1,0 +1,210 @@
+@use '/styles/variables' as v;
+@use '/styles/typography' as t;
+@use '/styles/mixins' as m;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  padding: 0;
+  text-transform: lowercase;
+  background-color: inherit;
+  transition: transform 0.2s;
+  cursor: pointer;
+  @include t.text-ui(v.$text-primary-color);
+
+  &_size {
+    &_sm {
+      gap: 5px;
+      padding: 9px 15px;
+      font-size: v.$font-size-sm;
+
+      .button__icon {
+        width: 14px;
+      }
+    }
+
+    &_md {
+      padding: 5.5px 20px;
+      font-size: v.$font-size-base;
+      line-height: 21px;
+
+      .button__icon {
+        width: 18px;
+      }
+    }
+
+    &_lg {
+      padding: 8px 25px;
+      line-height: 24px;
+
+      .button__icon {
+        width: 20px;
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    height: auto;
+
+    path {
+      fill: currentColor;
+    }
+  }
+
+  &:disabled {
+    color: v.$color-disabled;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.button_variant {
+  &_primary {
+    gap: 10px;
+    padding-right: 40px;
+    background-color: v.$color-accent;
+    transition: 0.2s;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+
+    &.button_size {
+      &_sm {
+        padding-right: 30px;
+      }
+      &_lg {
+        gap: 15px;
+      }
+    }
+
+    .button__span {
+      transition: 0.3s;
+    }
+
+    &:has(.button__icon) {
+      padding-left: 15px;
+    }
+
+    &:hover,
+    &:disabled,
+    &:focus-visible {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+    }
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      .button__span {
+        transform: translateX(3px);
+      }
+    }
+
+    &:disabled {
+      border: 2px solid v.$color-disabled;
+      padding: 3.5px 38px 3.5px 18px;
+      background-color: inherit;
+    }
+  }
+
+  &_secondary {
+    @include m.corner-borders($color: v.$color-accent, $size: 12px);
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      &::before,
+      &::after {
+        width: calc(100% - 1.8px);
+        height: calc(100% - 2px);
+      }
+    }
+
+    &:disabled {
+      &::before,
+      &::after {
+        border-color: v.$color-disabled;
+      }
+    }
+  }
+
+  &_black {
+    color: v.$text-secondary-color;
+    background-color: v.$color-black;
+
+    &:not(:disabled) {
+      @include m.corner-borders($color: v.$color-black);
+    }
+
+    &:has(.button__icon) {
+      gap: 10px;
+    }
+
+    &:hover:not(:active),
+    &:focus-visible {
+      &::after {
+        right: -4px;
+        bottom: -4px;
+      }
+
+      &::before {
+        top: -4px;
+        left: -4px;
+      }
+    }
+
+    &:disabled {
+      border: 2px solid v.$color-disabled;
+      background-color: inherit;
+    }
+  }
+
+  &_icon {
+    justify-content: center;
+    padding: 0;
+    transition: 0.3s;
+
+    &.button_size {
+      &_sm {
+        width: 32px;
+        height: 32px;
+
+        .button__icon {
+          max-width: 15px;
+        }
+      }
+
+      &_md {
+        width: 32px;
+        height: 32px;
+
+        .button__icon {
+          max-width: 22px;
+        }
+      }
+
+      &_lg {
+        width: 40px;
+        height: 40px;
+
+        .button__icon {
+          max-width: 30px;
+        }
+      }
+    }
+
+    &:hover:not(:active),
+    &:focus-visible {
+      background-color: v.$color-grey;
+    }
+  }
+}

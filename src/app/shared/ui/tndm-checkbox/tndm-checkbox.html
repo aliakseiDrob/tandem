@@ -1,0 +1,15 @@
+<label class="checkbox">
+  <input
+    class="checkbox__input"
+    type="checkbox"
+    [formControl]="control"
+    [id]="id()"
+    [name]="name()"
+    (blur)="onTouched()" />
+
+  <div class="checkbox__box"></div>
+
+  @if (label()) {
+  <span class="checkbox__label"> {{ label() }} </span>
+  }
+</label>

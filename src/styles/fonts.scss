@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'ProtoNerd';
+  src:
+    url('/fonts/proto/proto-nerd-regular.woff2') format('woff2'),
+    url('/fonts/proto/proto-nerd-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProtoNerd';
+  src:
+    url('/fonts/proto/proto-nerd-bold.woff2') format('woff2'),
+    url('/fonts/proto/proto-nerd-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnonymousPro';
+  src: url('/fonts/anonymous-pro/anonymous-pro-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnonymousPro';
+  src: url('/fonts/anonymous-pro/anonymous-pro-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CyberAlert';
+  src: url('/fonts/cyber-alert/cyber-alert.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}

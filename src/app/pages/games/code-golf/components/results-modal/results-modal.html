@@ -1,0 +1,32 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>{{ result().allPassed ? 'Success!' : 'Failed' }}</h3>
+
+    <div class="results-summary">
+      @if (result().results) {
+      <ul>
+        <li class="table-header">
+          <span>Test №</span>
+          <span>input</span>
+          <span>result</span>
+          <span>expected</span>
+          <span>passed</span>
+        </li>
+        @for (res of result().results; track $index) {
+        <li [class.failed]="!res.passed" [class.passed]="res.passed">
+          <span>Test #{{ $index + 1 }}</span>
+          <span>{{ res.input }}</span>
+          <span>{{ res.output }}</span>
+          <span>{{ res.expected }}</span>
+          <span>{{ res.passed ? '✅' : '❌' }}</span>
+        </li>
+        }
+      </ul>
+      } @else {
+      <p class="error-text">{{ result().error || 'Some tests failed. Try again!' }}</p>
+      }
+    </div>
+
+    <tndm-button [btnConfig]="okBtnConfig" (click)="closeModal.emit()" />
+  </div>
+</div>

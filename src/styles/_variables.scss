@@ -1,0 +1,63 @@
+// Primitive Colors
+$color-white: #ffffff;
+$color-gray: #222222;
+
+$color-white: #f6f6f6;
+$color-light-grey: #e4e4e4;
+$color-grey: #c7c4c3;
+$color-dark-grey: #a29d9a;
+$color-black: #0b0300;
+$color-orange: #fd731b;
+$color-red: #ea3d1b;
+$color-green: #558e07;
+
+// Semantic Tokens
+$bg-main: $color-light-grey;
+$bg-surface: $color-white;
+$color-accent: $color-orange;
+$color-grey-accent: $color-dark-grey;
+
+$text-primary-color: $color-black;
+$text-secondary-color: $color-white;
+$text-accent-color: $color-orange;
+
+$border-main-color: $color-black;
+$border-second-color: $color-dark-grey;
+
+$color-error: $color-red;
+$color-success: $color-green;
+$color-disabled: $color-dark-grey;
+$color-warning: $color-orange;
+
+// Typography
+$font-family-base: 'ProtoNerd', 'Arial', sans-serif;
+$font-family-ui: 'AnonymousPro', 'Arial', sans-serif;
+$font-family-heading: 'CyberAlert', 'Alert', 'sans-serif';
+$font-size-base: 16px;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+// Paddings / Margins
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 30px;
+$radius-round: 50%;
+
+// Transitions
+$transition-fast: 0.2s ease-in-out;
+$transition-base: 0.3s ease;
+
+// Media Queries
+$bp-mobile: 576px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;

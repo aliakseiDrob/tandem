@@ -1,0 +1,22 @@
+<h3>Task Buckets</h3>
+
+<ul class="task-buckets-list-content">
+  <li
+    tndm-task-bucket
+    [codeBlocks]="syncBucket()"
+    [heading]="'Synchronous (Call Stack)'"
+    [taskType]="'sync'"
+    (codeBlockDropped)="syncBucketChanged.emit($event)"></li>
+  <li
+    tndm-task-bucket
+    [codeBlocks]="microBucket()"
+    [heading]="'Micro Tasks'"
+    [taskType]="'micro'"
+    (codeBlockDropped)="microBucketChanged.emit($event)"></li>
+  <li
+    tndm-task-bucket
+    [codeBlocks]="macroBucket()"
+    [heading]="'Macro Tasks'"
+    [taskType]="'macro'"
+    (codeBlockDropped)="macroBucketChanged.emit($event)"></li>
+</ul>

@@ -1,0 +1,137 @@
+@use 'sass:color';
+@use './styles/typography' as mx;
+@use './styles/variables' as vars;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: vars.$space-lg;
+  width: 100%;
+}
+
+%card-style {
+  display: flex;
+  padding: vars.$space-sm vars.$space-md;
+  background-color: vars.$bg-surface;
+  border: 1px solid vars.$border-second-color;
+  border-radius: vars.$radius-sm;
+  box-shadow: 2px 2px 0px vars.$border-main-color;
+  min-height: 85px;
+}
+
+.best-result {
+  flex: 1;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.record-badge {
+  @extend %card-style;
+  flex-direction: column;
+  justify-content: center;
+  gap: vars.$space-xs;
+  border-left: 4px solid vars.$color-warning;
+
+  .label {
+    @include mx.text-ui(vars.$color-grey-accent, 0.8rem, vars.$font-weight-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .value {
+    @include mx.text-ui(vars.$text-primary-color, 1.2rem, vars.$font-weight-bold);
+  }
+}
+
+.diff-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$space-xs;
+  height: 24px;
+  margin-top: vars.$space-sm;
+  @include mx.text-ui(vars.$color-grey-accent, vars.$font-size-sm, vars.$font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.progress {
+    color: vars.$color-success;
+    &::before {
+      content: '▼';
+      font-size: 10px;
+    }
+  }
+
+  &.regress {
+    color: vars.$color-error;
+    &::before {
+      content: '▲';
+      font-size: 10px;
+    }
+  }
+}
+
+.game-info {
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-sm;
+}
+
+.rank-info {
+  @extend %card-style;
+  align-items: center;
+  gap: vars.$space-md;
+  border-left: 4px solid transparent;
+}
+
+.icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.rank {
+  font-family: vars.$font-family-heading;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: vars.$text-primary-color;
+  line-height: 1.1;
+}
+
+.bytes-amount {
+  color: vars.$color-grey-accent;
+  font-family: vars.$font-family-ui;
+  font-size: 0.9rem;
+}
+
+.rank-progress {
+  height: 8px;
+  background: vars.$bg-surface;
+  border: 1px solid vars.$border-second-color;
+  border-radius: vars.$radius-sm;
+  overflow: hidden;
+
+  .progress-fill {
+    height: 100%;
+    transition:
+      width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      background-color 0.3s ease;
+  }
+}

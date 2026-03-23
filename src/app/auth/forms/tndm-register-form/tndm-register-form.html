@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form__body">
+    <tndm-input
+      label="Login"
+      name="login"
+      [errorMessages]="AUTH_ERROR_MESSAGES"
+      [formControl]="loginControl"
+      [id]="'login'"
+      [placeholder]="'Enter your login'"
+      [type]="'text'" />
+    <tndm-input
+      label="Email"
+      name="email"
+      [formControl]="emailControl"
+      [id]="'email'"
+      [placeholder]="'Enter email'"
+      [type]="'email'" />
+    <tndm-input
+      label="Password"
+      name="password"
+      [errorMessages]="AUTH_ERROR_MESSAGES"
+      [formControl]="passwordControl"
+      [id]="'password'"
+      [placeholder]="'Enter password'"
+      [type]="'password'" />
+  </div>
+  <div class="form__footer">
+    <tndm-button [btnConfig]="signUpBtnConfig()" />
+    <tndm-button [btnConfig]="signWithGoogleBtnConfig()" (click)="signWithOAuth('google')" />
+    <tndm-button [btnConfig]="signWithGithubBtnConfig()" (click)="signWithOAuth('github')" />
+    <h5 class="form__subtitle">You have an account?</h5>
+    <tndm-button [btnConfig]="toLoginBtnConfig()" (click)="navigateToLogin()" />
+    <a class="form__link" [routerLink]="toForgotPasswordPath">Forgot Password?</a>
+  </div>
+</form>

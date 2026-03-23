@@ -1,0 +1,26 @@
+<div class="tndm-input-wrapper">
+  @if (label()){
+  <label class="label" [for]="id()">{{ label() }}</label>
+  }
+
+  <div class="input">
+    <input
+      #input
+      class="input__field"
+      [class.input-invalid]="isError()"
+      [formControl]="control"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder() ?? ''"
+      [type]="type()"
+      (blur)="onTouched()" />
+
+    @if (icon()) {
+    <svg-icon class="input__icon" [applyClass]="true" [src]="ICONS[icon()!]" />
+    }
+  </div>
+
+  <div class="error-container" [class.show]="isError()">
+    <span class="error-msg">{{ textError() || '' }}</span>
+  </div>
+</div>

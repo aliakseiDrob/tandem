@@ -1,0 +1,100 @@
+@use '/styles/variables' as v;
+@use '/styles/typography' as t;
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: v.$transition-base;
+  cursor: pointer;
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    appearance: none;
+
+    &:checked + .checkbox__box {
+      background-color: v.$border-main-color;
+
+      &::after,
+      &::before {
+        opacity: 1;
+      }
+      &::after {
+        width: 6px;
+        transition: width 0.15s ease;
+      }
+
+      &::before {
+        width: 12px;
+        transition: width 0.2s ease 0.1s;
+      }
+    }
+
+    &.input-invalid + .checkbox__box {
+      border-color: v.$color-error;
+    }
+
+    &:disabled {
+      & + .checkbox__box {
+        border-color: v.$color-disabled;
+        background-color: v.$color-disabled;
+        cursor: not-allowed;
+      }
+
+      & ~ .checkbox__label {
+        color: v.$color-disabled;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__box {
+    position: relative;
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    border: 2px solid v.$border-main-color;
+    transition: 0.1s;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      opacity: 0;
+      background-color: v.$bg-surface;
+      transform-origin: left center;
+    }
+
+    &::after {
+      top: 8px;
+      left: 3.5px;
+      transform: rotate(45deg);
+    }
+
+    &::before {
+      top: 12px;
+      left: 6.5px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__label {
+    @include t.text-body(v.$text-primary-color);
+  }
+
+  &:hover &__input:not(:disabled) {
+    & + .checkbox__box {
+      transform: translateY(-1px);
+    }
+  }
+
+  &:active &__input:not(:disabled) + .checkbox__box {
+    transform: translateY(1px);
+  }
+}

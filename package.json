@@ -1,0 +1,57 @@
+{
+  "name": "RS-Tandem",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "format": "prettier --write .",
+    "ci:format": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts}": [
+      "eslint . --fix --no-cache --max-warnings=0"
+    ],
+    "*.{scss, css, html}": [
+      "prettier --write"
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.8.0",
+  "dependencies": {
+    "@angular/cdk": "~21.2.0",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@supabase/supabase-js": "^2.98.0",
+    "angular-svg-icon": "^19.1.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.4",
+    "@angular/cli": "^21.1.4",
+    "@angular/compiler-cli": "^21.1.0",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "angular-eslint": "21.2.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
+    "jsdom": "^27.1.0",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "prettier-eslint": "^16.4.2",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "8.50.1",
+    "vitest": "^4.0.8"
+  }
+}

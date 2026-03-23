@@ -1,0 +1,3 @@
+@use '../../styles/auth-mixin' as mx;
+
+@include mx.auth-form();

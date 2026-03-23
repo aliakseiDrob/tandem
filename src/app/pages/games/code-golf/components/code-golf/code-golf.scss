@@ -1,0 +1,65 @@
+@use 'sass:color';
+@use '/styles/variables' as v;
+@use './styles/typography' as mx;
+
+$color-shadow: rgba(v.$color-black, 0.15);
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-lg;
+  max-width: 1440px;
+  margin: 20px auto;
+  padding: v.$space-lg;
+  box-sizing: border-box;
+  background-color: v.$bg-main;
+  border-radius: v.$radius-lg;
+  box-shadow: 0 10px 40px $color-shadow;
+  @include mx.text-body;
+}
+
+.game-name {
+  text-align: center;
+  text-transform: uppercase;
+  @include mx.text-heading(v.$text-accent-color);
+}
+
+.challenge-wrapper {
+  padding: v.$space-md;
+  background-color: v.$bg-surface;
+  border: 1px solid v.$border-second-color;
+  border-radius: v.$radius-md;
+  box-shadow: inset 0 1px 2px rgba(v.$color-black, 0.05);
+
+  .challenge-title {
+    margin: 0 0 v.$space-sm;
+    @include mx.text-title(v.$color-black);
+  }
+
+  .challenge-description {
+    margin: 0;
+    line-height: 1.6;
+    @include mx.text-ui(v.$color-grey-accent, v.$font-size-base, v.$font-weight-normal);
+  }
+}
+
+.challenge-info {
+  padding: v.$space-lg;
+  border: 2px dashed v.$border-second-color;
+  border-radius: v.$radius-md;
+  background-color: rgba(v.$color-white, 0.5);
+  @include mx.text-ui(v.$color-grey-accent, v.$font-size-sm, v.$font-weight-normal);
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: v.$space-md;
+  padding-top: v.$space-md;
+}
