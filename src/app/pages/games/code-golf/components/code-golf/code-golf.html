@@ -1,26 +1,70 @@
-<h2 class="game-name">Code golf</h2>
+<div class="code-golf-container">
+  <header class="game-header">
+    <h1 class="game-title">Code Golf</h1>
+    <p class="game-subtitle">Write the shortest code possible!</p>
+  </header>
 
-<tndm-code-golf-rank
-  [byteCount]="service.byteCount()"
-  [previousBest]="service.previousBest()"
-  [rank]="service.currentRank()" />
+  <!-- Challenge Display -->
+  <section class="challenge-section" aria-label="Current challenge">
+    @if (service.challengeResource.isLoading()) {
+      <div class="loading-state">
+        <div class="spinner" aria-label="Loading challenge"></div>
+        <p class="loading-text">Loading Challenge...</p>
+      </div>
+    } @else if (service.challengeResource.error()) {
+      <div class="error-state">
+        <p class="error-message">Failed to load challenge. Please try again.</p>
+        <button 
+          type="button" 
+          class="retry-btn"
+          (click)="service.challengeResource.reload()">
+          Retry
+        </button>
+      </div>
+    } @else if (service.currentChallenge(); as challenge) {
+      <div class="challenge-content">
+        <h2 class="challenge-title">{{ challenge.
+title }}</h2>
+        <div 
+          class="challenge-description" 
+          [innerHTML]="challenge.description">
+        </div>
+        @if (challenge.examples?.length) {
+          <div class="challenge-examples">
+            <h3>Examples:</h3>
+            @for (example of challenge.examples; track $index) {
+              <div class="example">
+                <code>Input: {{ example.input | json }}</code>
+                <code>Output: {{ example.expected | json }}</code>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <p class="empty-message">No challenges available at the moment.</p>
+        <button 
+          type="button" 
+          class="retry-btn"
+          (click)="service.challengeResource.reload()">
+          Try Again
+        </button>
+      </div>
+    }
+  </section>
 
-@if (service.challengeResource.isLoading()) {
-<p class="challenge-info">Loading Challenge...</p>
-} @else if (service.currentChallenge(); as challenge) {
-<div class="challenge-wrapper">
-  <h2 class="challenge-title">{{ challenge.title }}</h2>
-  <p class="challenge-description">{{ challenge.description }}</p>
-</div>
-} @else {
-<p class="challenge-info">No challenges available at the moment.</p>
-} @if (service.showResults() && service.result(); as result) {
-<tndm-code-golf-results [result]="result" (closeModal)="closeModal()" />
-}
-
-<tndm-code-golf-editor [(value)]="service.rawCode" />
-
-<div class="controls">
-  <tndm-button [btnConfig]="checkBtnConfig()" (click)="service.checkSolution()" />
-  <tndm-button [btnConfig]="nextBtnConfig" (click)="service.nextChallenge()" />
+  <!-- Controls -->
+  <section class="controls-section">
+    <div class="controls">
+      <tndm-button 
+        [btnConfig]="checkBtnConfig()" 
+        (click)="checkSolution()"
+        data-testid="check-solution-btn" />
+      <tndm-button 
+        [btnConfig]="nextBtnConfig" 
+        (click)="nextChallenge()"
+        data-testid="next-challenge-btn" />
+    </div>
+  </section>
 </div>

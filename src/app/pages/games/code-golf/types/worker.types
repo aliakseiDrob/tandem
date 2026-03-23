@@ -1,0 +1,22 @@
+export interface TestResult {
+  input: unknown;
+  output: unknown;
+  expected: unknown;
+  passed: boolean;
+}
+
+export interface WorkerResponse {
+  allPassed: boolean;
+  results?: TestResult[];
+  error?: string;
+}
+
+export interface WorkerMessage {
+  code: string;
+  testCases: TestCase[];
+}
+
+export interface TestCase {
+  input: unknown;
+  expected: unknown;
+}

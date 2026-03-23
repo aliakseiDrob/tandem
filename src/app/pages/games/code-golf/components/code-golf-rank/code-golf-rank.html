@@ -1,34 +1,57 @@
-<div class="best-result">
+<div class="rank-container">
   @if (previousBest(); as best) {
-  <div class="record-badge">
-    <span class="label">Your best result:</span>
-    <span class="value">{{ best }} Bytes</span>
-  </div>
+    <div class="best-result">
+      <div class="record-badge">
+        <span class="label">Personal Best:</span>
+        <span class="value">{{ best | number }} bytes</span>
+      </div>
 
-  <div
-    class="diff-indicator"
-    [class.is-visible]="diffInfo()"
-    [class.progress]="diffInfo()?.isProgress"
-    [class.regress]="diffInfo()?.isRegress">
-    @if (diffInfo(); as diff) { {{ diff.value }} Bytes
-    <span class="diff-label">({{ diff.label }})</span>
+      @if (diffInfo(); as diff) {
+        <div 
+          class="diff-indicator"
+          [ngClass]="{
+            'progress': diff.isProgress,
+            'reg
+ress': diff.isRegress,
+            'same': diff.value === 0
+          }"
+          [attr.aria-label]="'Difference from best: ' + diff.displayValue + ' bytes'">
+          <span class="diff-value">{{ diff.displayValue }}</span>
+          <span class="diff-label">({{ diff.label }})</span>
+        </div>
+      }
+    </div>
+  }
+
+  <div class="current-stats">
+    @if (rank(); as currentRank) {
+      <div 
+        class="rank-info" 
+        [style.border-left-color]="currentRank.color"
+        [attr.aria-label]="'Current rank: ' + currentRank.label">
+        <span 
+          class="rank-icon" 
+          [attr.aria-hidden]="true">{{ currentRank.icon }}</span>
+        <div class="rank-details">
+          <div 
+            class="rank-name" 
+            [style.color]="currentRank.color">{{ currentRank.label }}</div>
+          <div class="byte-count">{{ byteCount() | number }} bytes</div>
+        </div>
+      </div>
+
+      <div class="rank-progress" [attr.aria-label]="'Progress: ' + progressPercentage() + '%'">
+        <div 
+          class="progress-bar"
+          [style.background-color]="currentRank.color" 
+          [style.width.%]="progressPercentage()">
+        </div>
+      </div>
+    } @else {
+      <div class="no-rank">
+        <span class="byte-count">{{ byteCount() | number }} bytes</span>
+        <span class="no-rank-text">No rank available</span>
+      </div>
     }
   </div>
-  }
-</div>
-
-<div class="game-info">
-  @if (rank(); as currentRank) {
-  <div class="rank-info" [style.border-left-color]="currentRank.color">
-    <span class="icon">{{ currentRank.icon }}</span>
-    <div class="details">
-      <div class="rank" [style.color]="currentRank.color">{{ currentRank.label }}</div>
-      <div class="bytes-amount">{{ byteCount() }} Bytes</div>
-    </div>
-  </div>
-
-  <div class="rank-progress">
-    <div class="progress-fill" [style.background-color]="currentRank.color" [style.width.%]="currentRank.width"></div>
-  </div>
-  }
 </div>
